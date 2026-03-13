@@ -7,7 +7,7 @@ import net.minecraft.server.level.ServerPlayer;
 import org.spongepowered.asm.mixin.Mixin;
 
 @Mixin(ServerPlayer.class)
-public abstract class ServerPlayerMixin extends LivingEntityMixin {
+public abstract class ServerPlayerMixin extends PlayerMixin {
     @Override
     public void tickMana() {
         boolean changed = false;

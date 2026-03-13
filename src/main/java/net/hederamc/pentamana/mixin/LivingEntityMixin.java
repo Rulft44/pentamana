@@ -8,13 +8,10 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(LivingEntity.class)
-public abstract class LivingEntityMixin implements ManaHolder {
-    @Inject(
-        method = "tick()V",
-        at = @At("TAIL")
-    )
+public abstract class LivingEntityMixin extends EntityMixin implements ManaHolder {
+    @Inject(method = "tick()V", at = @At("TAIL"))
     private void tickMana(CallbackInfo info) {
-        if (((LivingEntity)(Object)this).level().isClientSide()) {
+        if (this.level().isClientSide()) {
             return;
         }
 
