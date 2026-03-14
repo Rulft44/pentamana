@@ -97,9 +97,15 @@ ManaEvents.CALCULATE_CAPACITY.register((livingEntity, capacity) -> {
 })
 ```
 
-All events:
-
 - `ManaEvents.CALCULATE_CAPACITY`
 - `ManaEvents.CALCULATE_REGENERATION`
 - `ManaEvents.CALCULATE_CONSUMPTION`
 - `ManaEvents.CALCULATE_DAMAGE`
+
+[Pentamana Extra](https://modrinth.com/mod/pentamana-extra) uses this.
+
+### Get Casting Damage
+
+```java
+livingEntity.getCastingDamageAgainst(entity, 1.234f)
+```
