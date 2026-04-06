@@ -39,8 +39,8 @@ public abstract class GuiMixin implements ManaBarGui {
         int containers = Math.min((int)manaCapacity / 2, maxContainers);
         int manaPoints = (int)(mana / manaCapacity * containers * 2);
         int width = containers * 8;
-        int x = middleX - (width / 2);
-        int y = context.guiHeight() - 69;
+        int x = middleX - (width / 2) + config.manabarX;
+        int y = context.guiHeight() - 69 + config.manabarY;
         for (int i = 0; i < containers; i++) {
             context.blitSprite(RenderPipelines.GUI_TEXTURED, MANA_CONTAINER_SPRITE, x, y, 9, 9);
 

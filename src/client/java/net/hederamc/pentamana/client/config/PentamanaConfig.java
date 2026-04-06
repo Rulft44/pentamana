@@ -5,6 +5,7 @@ import dev.isxander.yacl3.config.v2.api.SerialEntry;
 import dev.isxander.yacl3.config.v2.api.serializer.GsonConfigSerializerBuilder;
 import net.fabricmc.loader.api.FabricLoader;
 import net.hederamc.pentamana.Pentamana;
+import net.hederamc.pentamana.config.ManaBarPosition;
 import net.minecraft.resources.Identifier;
 
 public final class PentamanaConfig {
@@ -16,4 +17,9 @@ public final class PentamanaConfig {
         )
         .build();
     @SerialEntry public int manabarMaxStars = 20;
+
+    @SerialEntry public ManaBarPosition position = ManaBarPosition.ABOVE_HUNGER;
+
+    @SerialEntry public int manabarX = position.x;
+    @SerialEntry public int manabarY = position.y;
 }

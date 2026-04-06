@@ -7,9 +7,11 @@ import dev.isxander.yacl3.api.Option;
 import dev.isxander.yacl3.api.OptionDescription;
 import dev.isxander.yacl3.api.OptionGroup;
 import dev.isxander.yacl3.api.YetAnotherConfigLib;
+import dev.isxander.yacl3.api.controller.EnumControllerBuilder;
 import dev.isxander.yacl3.api.controller.IntegerSliderControllerBuilder;
 import net.hederamc.fishbonetrehalose.api.Text;
 import net.hederamc.pentamana.PentamanaClient;
+import net.hederamc.pentamana.config.ManaBarPosition;
 
 public class ModMenuIntegration implements ModMenuApi {
     @Override
@@ -18,6 +20,58 @@ public class ModMenuIntegration implements ModMenuApi {
                 .title(Text.literal("Pentamana"))
                 .category(ConfigCategory.createBuilder()
                         .name(Text.literal("Manabar"))
+                        .group(OptionGroup.createBuilder()
+                                .name(Text.literal("Position"))
+                                .description(OptionDescription.createBuilder()
+                                        .text(Text.literal("Set your desired position of the manabar."))
+                                        .build())
+                                .option(Option.<Integer>createBuilder()
+                                        .name(Text.literal("X"))
+                                        .binding(
+                                                PentamanaClient.DEFAULTS.manabarX,
+                                                () -> {
+                                                    return PentamanaClient.CONFIG.manabarX;
+                                                },
+                                                newVal -> {
+                                                    PentamanaClient.CONFIG.manabarX = newVal;
+                                                })
+                                        .controller(
+                                            opt -> IntegerSliderControllerBuilder.create(opt)
+                                                    .range(-278, 278)
+                                                    .step(1))
+                                        .build())
+                                .option(Option.<Integer>createBuilder()
+                                        .name(Text.literal("Y"))
+                                        .binding(
+                                                PentamanaClient.DEFAULTS.manabarY,
+                                                () -> {
+                                                    return PentamanaClient.CONFIG.manabarY;
+                                                },
+                                                newVal -> {
+                                                    PentamanaClient.CONFIG.manabarY = newVal;
+                                                })
+                                        .controller(
+                                                opt -> IntegerSliderControllerBuilder.create(opt)
+                                                        .range(-330, 57)
+                                                        .step(1))
+                                        .build())
+                                .option(Option.<ManaBarPosition>createBuilder()
+                                        .name(Text.literal("Preset"))
+                                        .binding(
+                                                PentamanaClient.DEFAULTS.position,
+                                                () -> {
+                                                    return PentamanaClient.CONFIG.position;
+                                                },
+                                                newVal -> {
+                                                    PentamanaClient.CONFIG.position = newVal;
+                                                    PentamanaClient.CONFIG.manabarX = newVal.x;
+                                                    PentamanaClient.CONFIG.manabarY = newVal.y;
+                                                }
+                                        )
+                                        .controller(opt -> EnumControllerBuilder.create(opt)
+                                                .enumClass(ManaBarPosition.class))
+                                        .build())
+                                .build())
                         .group(OptionGroup.createBuilder()
                                 .name(Text.literal("Miscellaneous"))
                                 .option(Option.<Integer>createBuilder()
