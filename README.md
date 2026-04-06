@@ -14,8 +14,9 @@ Pentamana is a library adds non-registered mana status for living entities.
 
 ```json
 {
-  "manaCapacityBase": 20.0,
-  "manaRegenerationBase": 0.0625
+  "manabarMaxStars": 35,
+  "manabarX": 49,
+  "manabarY": 19
 }
 ```
 
@@ -55,7 +56,7 @@ Codes in this tutorial are licenced under CC-0.
 `gradle.properties`:
 
 ```properties
-pentamana_version=2.0.0-beta.13
+pentamana_version=2.0.0-beta.14
 ```
 
 `build.gradle`:
